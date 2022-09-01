@@ -17,6 +17,7 @@ router.post('/', async (req, res)=>{
                     password:hash
                 })
                 mydate.save().then(()=>{
+                    
                     const token = jwt.sign({id:mydate._id, email:mydate.email}, key)                  
                     res.status(200).json({status:true, massges:'Seccessful Resigeter...', date:mydate,token:token})
                 })
