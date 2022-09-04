@@ -3,7 +3,9 @@ const router = express.Router()
 const resigeter_models = require('../models/resigeter_models')
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
-const key = 'codewithreman'
+const doenv = require("dotenv")
+const env = doenv.config()
+const key = process.env.S_KEY
 
 router.post('/', async (req, res)=>{
     try {
@@ -17,8 +19,7 @@ router.post('/', async (req, res)=>{
                     password:hash
                 })
                 mydate.save().then(()=>{
-                    
-                    const token = jwt.sign({id:mydate._id, email:mydate.email}, key)                  
+                    const token = jwt.sign({id:mydate._id, email:mydate.email}, key)   
                     res.status(200).json({status:true, massges:'Seccessful Resigeter...', date:mydate,token:token})
                 })
 
