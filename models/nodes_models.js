@@ -8,7 +8,8 @@ const NodesSchema = new mongoose.Schema({
         type:String
     },
     userid:{
-        type:String
+        type:String,
+        default:"not found"
     },
     date:{
         type:String,
